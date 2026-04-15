@@ -8,7 +8,7 @@ export default function Contact() {
       </p>
 
       <h3>Email</h3>
-      <p>your@email.com</p>
+      <p>JBworkamazing@gmail.com</p>
 
       <h3>Support</h3>
       <p>
