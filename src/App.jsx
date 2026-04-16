@@ -104,7 +104,6 @@ function Home() {
     <div style={styles.homeWrapper}>
 
       <section style={styles.hero}>
-        {/* Updated appeals tag */}
         <div style={styles.heroTag}>AWAKEN YOUR POTENTIAL</div>
         <h1 style={styles.heroTitle}>
           All-in-One Free AI Tools Platform

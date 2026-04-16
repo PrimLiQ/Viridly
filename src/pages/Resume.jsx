@@ -81,7 +81,8 @@ export default function Resume() {
   const getGrowthIcon = () => {
     let imgSrc = "";
     let altText = "";
-    const iconPath = "src/Icons/";
+    // The leading "/" tells the browser to look in the public folder root
+    const iconPath = "/Icons/";
 
     if (completion === 0) {
       imgSrc = `${iconPath}seed.png`;
@@ -103,7 +104,15 @@ export default function Resume() {
       altText = "Stage 5: Fruit (100%)";
     }
 
-    return <img src={imgSrc} alt={altText} style={{ width: "100px", height: "auto" }} />;
+    return (
+      <img 
+        src={imgSrc} 
+        alt={altText} 
+        style={{ width: "100px", height: "auto" }} 
+        // Prevents the broken image icon from showing if a file is missing
+        onError={(e) => { e.target.style.display = 'none'; }}
+      />
+    );
   };
 
   /* ================= 3. RENDER ================= */
