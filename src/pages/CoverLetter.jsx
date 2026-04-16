@@ -63,6 +63,8 @@ Cheers,
     <div style={styles.container}>
       <style>
         {`
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
+
           .glow-button:hover {
             background-color: #7a8a6d !important;
             color: white !important;
@@ -81,77 +83,84 @@ Cheers,
         `}
       </style>
 
-      <div style={styles.card}>
-        <h2 style={styles.title}>Cover Letter Generator</h2>
-        <p style={styles.subtitle}>Cultivate a professional introduction tailored to your next role.</p>
-
-        <div style={styles.inputGrid}>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>TARGET JOB</label>
-            <input 
-              placeholder="e.g. Lead Developer" 
-              value={job} 
-              onChange={e => setJob(e.target.value)} 
-              style={styles.input}
-            />
-          </div>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>COMPANY NAME</label>
-            <input 
-              placeholder="e.g. Viridly Tech" 
-              value={company} 
-              onChange={e => setCompany(e.target.value)} 
-              style={styles.input}
-            />
-          </div>
+      <div style={styles.mainWrapper}>
+        {/* Title Outside the Panel with Spacing */}
+        <div style={{ marginBottom: "20px" }}>
+           <h1 style={styles.brandedTitle}>Cover Letter</h1>
         </div>
 
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>CORE SKILLS & EXPERTISE</label>
-          <input 
-            placeholder="e.g. React, UX Research, Project Leadership" 
-            value={skills} 
-            onChange={e => setSkills(e.target.value)} 
-            style={styles.input}
-          />
-        </div>
+        <div style={styles.card}>
+          <h3 style={styles.panelHeading}>CULTIVATE A PROFESSIONAL INTRODUCTION</h3>
+          <p style={styles.subtitle}>Tailor your next role's first impression.</p>
 
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>NARRATIVE TONE</label>
-          <select 
-            value={tone} 
-            onChange={e => setTone(e.target.value)} 
-            style={styles.input}
-          >
-            <option value="Professional">Corporate & Balanced</option>
-            <option value="Passionate">Energetic & Mission-Driven</option>
-            <option value="Modern">Direct & Efficiency-Focused</option>
-          </select>
-        </div>
-
-        <button 
-          onClick={generate} 
-          className="glow-button" 
-          style={styles.btn}
-        >
-          GENERATE LETTER
-        </button>
-
-        {letter && (
-          <div style={styles.outputContainer}>
-            <div style={styles.outputHeader}>
-              <h3 style={styles.outputTitle}>Cultivated Draft</h3>
-              <button 
-                onClick={copyToClipboard}
-                className="utility-btn"
-                style={styles.copyBtn}
-              >
-                {copied ? "COPIED" : "COPY"}
-              </button>
+          <div style={styles.inputGrid}>
+            <div style={styles.inputGroup}>
+              <label style={styles.label}>TARGET JOB</label>
+              <input 
+                placeholder="e.g. Lead Developer" 
+                value={job} 
+                onChange={e => setJob(e.target.value)} 
+                style={styles.input}
+              />
             </div>
-            <pre style={styles.output}>{letter}</pre>
+            <div style={styles.inputGroup}>
+              <label style={styles.label}>COMPANY NAME</label>
+              <input 
+                placeholder="e.g. Viridly Tech" 
+                value={company} 
+                onChange={e => setCompany(e.target.value)} 
+                style={styles.input}
+              />
+            </div>
           </div>
-        )}
+
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>CORE SKILLS & EXPERTISE</label>
+            <input 
+              placeholder="e.g. React, UX Research, Project Leadership" 
+              value={skills} 
+              onChange={e => setSkills(e.target.value)} 
+              style={styles.input}
+            />
+          </div>
+
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>NARRATIVE TONE</label>
+            <select 
+              value={tone} 
+              onChange={e => setTone(e.target.value)} 
+              style={styles.input}
+            >
+              <option value="Professional">Corporate & Balanced</option>
+              <option value="Passionate">Energetic & Mission-Driven</option>
+              <option value="Modern">Direct & Efficiency-Focused</option>
+            </select>
+          </div>
+
+          <button 
+            onClick={generate} 
+            className="glow-button" 
+            style={styles.btn}
+          >
+            GENERATE LETTER
+          </button>
+
+          {letter && (
+            <div style={styles.outputContainer}>
+              <div style={styles.outputHeader}>
+                <h3 style={styles.outputTitle}>CULTIVATED DRAFT</h3>
+                <button 
+                  onClick={copyToClipboard}
+                  className="utility-btn"
+                  style={styles.copyBtn}
+                >
+                  {copied ? "COPIED" : "COPY"}
+                </button>
+              </div>
+              <pre style={styles.output}>{letter}</pre>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -166,28 +175,41 @@ const styles = {
     justifyContent: "center",
     fontFamily: "'Inter', sans-serif",
   },
+  mainWrapper: {
+    maxWidth: "650px",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column"
+  },
+  brandedTitle: { 
+    fontSize: "32px", 
+    color: "#7a8a6d", 
+    fontFamily: "'Playfair Display', serif", 
+    fontStyle: "italic", 
+    margin: "0",
+    textAlign: "left"
+  },
   card: {
     background: "#ffffff",
     padding: "40px",
     borderRadius: "16px",
     border: "1px solid #f1ede9",
     boxShadow: "0 10px 30px rgba(92, 102, 86, 0.05)",
-    maxWidth: "650px",
     width: "100%",
     height: "fit-content",
   },
-  title: {
-    fontSize: "26px",
-    color: "#434b3e",
-    margin: "0 0 10px 0",
+  panelHeading: { 
+    fontSize: "12px", 
+    letterSpacing: "2px", 
+    color: "#aeb6a3", 
+    marginBottom: "5px",
     fontWeight: "700",
-    textAlign: "center"
+    textTransform: "uppercase"
   },
   subtitle: {
     fontSize: "14px",
     color: "#8c9488",
     marginBottom: "35px",
-    textAlign: "center"
   },
   inputGrid: {
     display: "grid",
@@ -216,7 +238,6 @@ const styles = {
     fontSize: "14px",
     outline: "none",
     boxSizing: "border-box",
-    appearance: "none"
   },
   btn: {
     width: "100%",

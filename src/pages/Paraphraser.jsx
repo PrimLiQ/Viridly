@@ -10,7 +10,6 @@ export default function Paraphraser() {
       return;
     }
 
-    // Improved logic: Providing professional variations instead of simple reversal
     const variations = [
       `Refined Perspective: ${text.trim()} — reimagined for clarity and professional impact.`,
       `From a different lens: ${text.split('.').reverse().join('. ')}`,
@@ -22,9 +21,10 @@ export default function Paraphraser() {
 
   return (
     <div style={styles.container}>
-      {/* CSS for Glow and Animation Effects */}
       <style>
         {`
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
+
           .glow-button:hover {
             background-color: #7a8a6d !important;
             color: white !important;
@@ -39,35 +39,42 @@ export default function Paraphraser() {
         `}
       </style>
 
-      <div style={styles.card}>
-        <h2 style={styles.title}>Paraphraser Tool</h2>
-        <p style={styles.subtitle}>Refine your perspective and cultivate your unique voice.</p>
-
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>ORIGINAL THOUGHT</label>
-          <textarea 
-            placeholder="Enter the text you wish to polish..." 
-            value={text} 
-            onChange={e => setText(e.target.value)} 
-            style={styles.textarea}
-            rows="5"
-          />
+      <div style={styles.mainWrapper}>
+        {/* Branded Title Outside the Card */}
+        <div style={{ marginBottom: "20px" }}>
+           <h1 style={styles.brandedTitle}>Paraphraser</h1>
         </div>
 
-        <button 
-          onClick={paraphrase} 
-          className="glow-button" 
-          style={styles.btn}
-        >
-          REFINE TEXT
-        </button>
+        <div style={styles.card}>
+          <h3 style={styles.panelHeading}>REFINE YOUR PERSPECTIVE</h3>
+          <p style={styles.subtitle}>Cultivate your unique voice with professional clarity.</p>
 
-        {output && (
-          <div style={styles.outputContainer}>
-            <h3 style={styles.outputTitle}>Cultivated Variation:</h3>
-            <p style={styles.output}>{output}</p>
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>ORIGINAL THOUGHT</label>
+            <textarea 
+              placeholder="Enter the text you wish to polish..." 
+              value={text} 
+              onChange={e => setText(e.target.value)} 
+              style={styles.textarea}
+              rows="5"
+            />
           </div>
-        )}
+
+          <button 
+            onClick={paraphrase} 
+            className="glow-button" 
+            style={styles.btn}
+          >
+            REFINE TEXT
+          </button>
+
+          {output && (
+            <div style={styles.outputContainer}>
+              <h3 style={styles.outputTitle}>CULTIVATED VARIATION</h3>
+              <p style={styles.output}>{output}</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -82,27 +89,43 @@ const styles = {
     justifyContent: "center",
     fontFamily: "'Inter', sans-serif",
   },
+  mainWrapper: {
+    maxWidth: "600px",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column"
+  },
+  brandedTitle: { 
+    fontSize: "32px", 
+    color: "#7a8a6d", 
+    fontFamily: "'Playfair Display', serif", 
+    fontStyle: "italic", 
+    margin: "0",
+    textAlign: "left"
+  },
   card: {
     background: "#ffffff",
     padding: "40px",
     borderRadius: "16px",
     border: "1px solid #f1ede9",
-    boxShadow: "0 4px 12px rgba(92, 102, 86, 0.03)",
-    maxWidth: "600px",
+    boxShadow: "0 10px 30px rgba(92, 102, 86, 0.05)",
     width: "100%",
     height: "fit-content",
-    textAlign: "center"
   },
-  title: {
-    fontSize: "24px",
-    color: "#434b3e",
-    margin: "0 0 10px 0",
-    fontWeight: "700"
+  panelHeading: { 
+    fontSize: "12px", 
+    letterSpacing: "2px", 
+    color: "#aeb6a3", 
+    marginBottom: "5px",
+    fontWeight: "700",
+    textTransform: "uppercase",
+    textAlign: "center"
   },
   subtitle: {
     fontSize: "14px",
     color: "#8c9488",
-    marginBottom: "30px"
+    marginBottom: "30px",
+    textAlign: "center"
   },
   inputGroup: {
     marginBottom: "20px",

@@ -45,6 +45,8 @@ Ultimately, ${topic} is a testament to the human spirit's desire to explore, cre
     <div style={styles.container}>
       <style>
         {`
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
+
           .glow-button:hover {
             background-color: #7a8a6d !important;
             color: white !important;
@@ -64,60 +66,67 @@ Ultimately, ${topic} is a testament to the human spirit's desire to explore, cre
         `}
       </style>
 
-      <div style={styles.card}>
-        <h2 style={styles.title}>Essay Generator</h2>
-        <p style={styles.subtitle}>Cultivate structured thoughts and insightful perspectives.</p>
-
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>DISCOURSE TOPIC</label>
-          <input 
-            placeholder="e.g. Sustainable Architecture" 
-            value={topic} 
-            onChange={e => setTopic(e.target.value)} 
-            style={styles.input}
-          />
+      <div style={styles.mainWrapper}>
+        {/* Title Outside the Panel with Spacing */}
+        <div style={{ marginBottom: "20px" }}>
+           <h1 style={styles.brandedTitle}>Essay</h1>
         </div>
 
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>NARRATIVE TONE</label>
-          <select 
-            value={tone} 
-            onChange={e => setTone(e.target.value)} 
-            style={styles.input}
-          >
-            <option value="Academic">Academic & Rigorous</option>
-            <option value="Professional">Strategic & Professional</option>
-            <option value="Creative">Creative & Inspired</option>
-          </select>
-        </div>
+        <div style={styles.card}>
+          <h3 style={styles.panelHeading}>CULTIVATE STRUCTURED THOUGHTS</h3>
+          <p style={styles.subtitle}>Develop insightful perspectives with natural clarity.</p>
 
-        <button 
-          onClick={generate} 
-          className="glow-button" 
-          style={styles.btn}
-        >
-          GENERATE ESSAY
-        </button>
-
-        {essay && (
-          <div style={styles.outputContainer}>
-            <div style={styles.outputHeader}>
-              <h3 style={styles.outputTitle}>Cultivated Draft</h3>
-              <button 
-                onClick={copyToClipboard} 
-                className="secondary-button"
-                style={styles.copyBtn}
-              >
-                {copied ? "COPIED!" : "COPY TEXT"}
-              </button>
-            </div>
-            <div style={styles.output}>
-              {essay.split('\n\n').map((para, i) => (
-                <p key={i} style={{ marginBottom: "15px" }}>{para}</p>
-              ))}
-            </div>
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>DISCOURSE TOPIC</label>
+            <input 
+              placeholder="e.g. Sustainable Architecture" 
+              value={topic} 
+              onChange={e => setTopic(e.target.value)} 
+              style={styles.input}
+            />
           </div>
-        )}
+
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>NARRATIVE TONE</label>
+            <select 
+              value={tone} 
+              onChange={e => setTone(e.target.value)} 
+              style={styles.input}
+            >
+              <option value="Academic">Academic & Rigorous</option>
+              <option value="Professional">Strategic & Professional</option>
+              <option value="Creative">Creative & Inspired</option>
+            </select>
+          </div>
+
+          <button 
+            onClick={generate} 
+            className="glow-button" 
+            style={styles.btn}
+          >
+            GENERATE ESSAY
+          </button>
+
+          {essay && (
+            <div style={styles.outputContainer}>
+              <div style={styles.outputHeader}>
+                <h3 style={styles.outputTitle}>CULTIVATED DRAFT</h3>
+                <button 
+                  onClick={copyToClipboard} 
+                  className="secondary-button"
+                  style={styles.copyBtn}
+                >
+                  {copied ? "COPIED!" : "COPY TEXT"}
+                </button>
+              </div>
+              <div style={styles.output}>
+                {essay.split('\n\n').map((para, i) => (
+                  <p key={i} style={{ marginBottom: "15px" }}>{para}</p>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -132,28 +141,41 @@ const styles = {
     justifyContent: "center",
     fontFamily: "'Inter', sans-serif",
   },
+  mainWrapper: {
+    maxWidth: "650px",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column"
+  },
+  brandedTitle: { 
+    fontSize: "32px", 
+    color: "#7a8a6d", 
+    fontFamily: "'Playfair Display', serif", 
+    fontStyle: "italic", 
+    margin: "0",
+    textAlign: "left"
+  },
   card: {
     background: "#ffffff",
     padding: "40px",
     borderRadius: "16px",
     border: "1px solid #f1ede9",
     boxShadow: "0 10px 30px rgba(92, 102, 86, 0.05)",
-    maxWidth: "650px",
     width: "100%",
     height: "fit-content",
   },
-  title: {
-    fontSize: "26px",
-    color: "#434b3e",
-    margin: "0 0 10px 0",
+  panelHeading: { 
+    fontSize: "12px", 
+    letterSpacing: "2px", 
+    color: "#aeb6a3", 
+    marginBottom: "5px",
     fontWeight: "700",
-    textAlign: "center"
+    textTransform: "uppercase"
   },
   subtitle: {
     fontSize: "14px",
     color: "#8c9488",
     marginBottom: "35px",
-    textAlign: "center"
   },
   inputGroup: {
     marginBottom: "20px",
@@ -176,7 +198,6 @@ const styles = {
     fontSize: "14px",
     outline: "none",
     boxSizing: "border-box",
-    appearance: "none"
   },
   btn: {
     width: "100%",

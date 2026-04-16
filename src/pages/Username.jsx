@@ -43,6 +43,8 @@ export default function Username() {
     <div style={styles.container}>
       <style>
         {`
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
+
           .glow-button:hover {
             background-color: #7a8a6d !important;
             color: white !important;
@@ -67,59 +69,66 @@ export default function Username() {
         `}
       </style>
 
-      <div style={styles.card}>
-        <h2 style={styles.title}>Username Generator</h2>
-        <p style={styles.subtitle}>Discover a unique digital handle that feels natural.</p>
-
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>BASE IDENTITY</label>
-          <input 
-            placeholder="e.g. Prim" 
-            value={name} 
-            onChange={e => setName(e.target.value)} 
-            style={styles.input}
-          />
+      <div style={styles.mainWrapper}>
+        {/* Branded Title Outside the Card */}
+        <div style={{ marginBottom: "20px" }}>
+           <h1 style={styles.brandedTitle}>Username</h1>
         </div>
 
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>AESTHETIC STYLE</label>
-          <select 
-            value={theme} 
-            onChange={e => setTheme(e.target.value)} 
-            style={styles.input}
-          >
-            <option value="Modern">Minimalist & Modern</option>
-            <option value="Nature">Organic & Earthy</option>
-            <option value="Tech">Clean & Technical</option>
-          </select>
-        </div>
+        <div style={styles.card}>
+          <h3 style={styles.panelHeading}>DISCOVER YOUR DIGITAL HANDLE</h3>
+          <p style={styles.subtitle}>Cultivate a unique identity that feels natural.</p>
 
-        <button 
-          onClick={generate} 
-          className="glow-button" 
-          style={styles.btn}
-        >
-          GENERATE HANDLES
-        </button>
-
-        {results.length > 0 && (
-          <div style={styles.outputContainer}>
-            <h3 style={styles.outputTitle}>Click to copy:</h3>
-            <div style={styles.grid}>
-              {results.map((u, i) => (
-                <div 
-                  key={i} 
-                  onClick={() => copyToClipboard(u, i)}
-                  className="username-pill"
-                  style={styles.pill}
-                >
-                  {u}
-                  {copiedIndex === i && <span style={styles.copiedText}>✓</span>}
-                </div>
-              ))}
-            </div>
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>BASE IDENTITY</label>
+            <input 
+              placeholder="e.g. Prim" 
+              value={name} 
+              onChange={e => setName(e.target.value)} 
+              style={styles.input}
+            />
           </div>
-        )}
+
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>AESTHETIC STYLE</label>
+            <select 
+              value={theme} 
+              onChange={e => setTheme(e.target.value)} 
+              style={styles.input}
+            >
+              <option value="Modern">Minimalist & Modern</option>
+              <option value="Nature">Organic & Earthy</option>
+              <option value="Tech">Clean & Technical</option>
+            </select>
+          </div>
+
+          <button 
+            onClick={generate} 
+            className="glow-button" 
+            style={styles.btn}
+          >
+            GENERATE HANDLES
+          </button>
+
+          {results.length > 0 && (
+            <div style={styles.outputContainer}>
+              <h3 style={styles.outputTitle}>CLICK TO COPY:</h3>
+              <div style={styles.grid}>
+                {results.map((u, i) => (
+                  <div 
+                    key={i} 
+                    onClick={() => copyToClipboard(u, i)}
+                    className="username-pill"
+                    style={styles.pill}
+                  >
+                    {u}
+                    {copiedIndex === i && <span style={styles.copiedText}>✓</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -134,27 +143,43 @@ const styles = {
     justifyContent: "center",
     fontFamily: "'Inter', sans-serif",
   },
+  mainWrapper: {
+    maxWidth: "500px",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column"
+  },
+  brandedTitle: { 
+    fontSize: "32px", 
+    color: "#7a8a6d", 
+    fontFamily: "'Playfair Display', serif", 
+    fontStyle: "italic", 
+    margin: "0",
+    textAlign: "left"
+  },
   card: {
     background: "#ffffff",
     padding: "40px",
     borderRadius: "16px",
     border: "1px solid #f1ede9",
     boxShadow: "0 10px 30px rgba(92, 102, 86, 0.05)",
-    maxWidth: "500px",
     width: "100%",
     height: "fit-content",
-    textAlign: "center"
   },
-  title: {
-    fontSize: "24px",
-    color: "#434b3e",
-    margin: "0 0 10px 0",
-    fontWeight: "700"
+  panelHeading: { 
+    fontSize: "12px", 
+    letterSpacing: "2px", 
+    color: "#aeb6a3", 
+    marginBottom: "5px",
+    fontWeight: "700",
+    textTransform: "uppercase",
+    textAlign: "center"
   },
   subtitle: {
     fontSize: "14px",
     color: "#8c9488",
-    marginBottom: "35px"
+    marginBottom: "35px",
+    textAlign: "center"
   },
   inputGroup: {
     marginBottom: "20px",
@@ -178,7 +203,6 @@ const styles = {
     fontSize: "14px",
     outline: "none",
     boxSizing: "border-box",
-    appearance: "none"
   },
   btn: {
     width: "100%",

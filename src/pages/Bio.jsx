@@ -43,6 +43,8 @@ export default function Bio() {
     <div style={styles.container}>
       <style>
         {`
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
+
           .glow-button:hover {
             background-color: #7a8a6d !important;
             color: white !important;
@@ -61,66 +63,73 @@ export default function Bio() {
         `}
       </style>
 
-      <div style={styles.card}>
-        <h2 style={styles.title}>Bio Generator</h2>
-        <p style={styles.subtitle}>Define your professional essence with natural clarity.</p>
-
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>FULL NAME</label>
-          <input 
-            placeholder="e.g. Alex Rivera" 
-            value={name} 
-            onChange={e => setName(e.target.value)} 
-            style={styles.input}
-          />
+      <div style={styles.mainWrapper}>
+        {/* Title Outside the Panel with Spacing */}
+        <div style={{ marginBottom: "20px" }}>
+           <h1 style={styles.brandedTitle}>Bio</h1>
         </div>
 
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>CORE SKILLS</label>
-          <input 
-            placeholder="e.g. UI Design, Data Analysis, Writing" 
-            value={skills} 
-            onChange={e => setSkills(e.target.value)} 
-            style={styles.input}
-          />
-        </div>
+        <div style={styles.card}>
+          <h3 style={styles.panelHeading}>DEFINE YOUR PROFESSIONAL ESSENCE</h3>
+          <p style={styles.subtitle}>Cultivate a summary with natural clarity.</p>
 
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>CONTEXT</label>
-          <select 
-            value={platform} 
-            onChange={e => setPlatform(e.target.value)} 
-            style={styles.input}
-          >
-            <option value="Professional">LinkedIn & Corporate</option>
-            <option value="Creative">Portfolio & Creative</option>
-            <option value="Minimalist">Minimalist / Twitter</option>
-          </select>
-        </div>
-
-        <button 
-          onClick={generateBio} 
-          className="glow-button" 
-          style={styles.btn}
-        >
-          CULTIVATE BIO
-        </button>
-
-        {bio && (
-          <div style={styles.outputContainer}>
-            <div style={styles.outputHeader}>
-              <h3 style={styles.outputTitle}>Cultivated Summary</h3>
-              <button 
-                onClick={copyToClipboard}
-                className="utility-btn"
-                style={styles.copyBtn}
-              >
-                {copied ? "COPIED" : "COPY"}
-              </button>
-            </div>
-            <p style={styles.output}>{bio}</p>
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>FULL NAME</label>
+            <input 
+              placeholder="e.g. Alex Rivera" 
+              value={name} 
+              onChange={e => setName(e.target.value)} 
+              style={styles.input}
+            />
           </div>
-        )}
+
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>CORE SKILLS</label>
+            <input 
+              placeholder="e.g. UI Design, Data Analysis, Writing" 
+              value={skills} 
+              onChange={e => setSkills(e.target.value)} 
+              style={styles.input}
+            />
+          </div>
+
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>CONTEXT</label>
+            <select 
+              value={platform} 
+              onChange={e => setPlatform(e.target.value)} 
+              style={styles.input}
+            >
+              <option value="Professional">LinkedIn & Corporate</option>
+              <option value="Creative">Portfolio & Creative</option>
+              <option value="Minimalist">Minimalist / Twitter</option>
+            </select>
+          </div>
+
+          <button 
+            onClick={generateBio} 
+            className="glow-button" 
+            style={styles.btn}
+          >
+            CULTIVATE BIO
+          </button>
+
+          {bio && (
+            <div style={styles.outputContainer}>
+              <div style={styles.outputHeader}>
+                <h3 style={styles.outputTitle}>CULTIVATED SUMMARY</h3>
+                <button 
+                  onClick={copyToClipboard}
+                  className="utility-btn"
+                  style={styles.copyBtn}
+                >
+                  {copied ? "COPIED" : "COPY"}
+                </button>
+              </div>
+              <p style={styles.output}>{bio}</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -135,27 +144,41 @@ const styles = {
     justifyContent: "center",
     fontFamily: "'Inter', sans-serif",
   },
+  mainWrapper: {
+    maxWidth: "500px",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column"
+  },
+  brandedTitle: { 
+    fontSize: "32px", 
+    color: "#7a8a6d", 
+    fontFamily: "'Playfair Display', serif", 
+    fontStyle: "italic", 
+    margin: "0",
+    textAlign: "left"
+  },
   card: {
     background: "#ffffff",
     padding: "40px",
     borderRadius: "16px",
     border: "1px solid #f1ede9",
     boxShadow: "0 10px 30px rgba(92, 102, 86, 0.05)",
-    maxWidth: "500px",
     width: "100%",
     height: "fit-content",
-    textAlign: "center"
   },
-  title: {
-    fontSize: "24px",
-    color: "#434b3e",
-    margin: "0 0 10px 0",
-    fontWeight: "700"
+  panelHeading: { 
+    fontSize: "12px", 
+    letterSpacing: "2px", 
+    color: "#aeb6a3", 
+    marginBottom: "5px",
+    fontWeight: "700",
+    textTransform: "uppercase"
   },
   subtitle: {
     fontSize: "14px",
     color: "#8c9488",
-    marginBottom: "35px"
+    marginBottom: "35px",
   },
   inputGroup: {
     marginBottom: "20px",
@@ -179,7 +202,6 @@ const styles = {
     fontSize: "14px",
     outline: "none",
     boxSizing: "border-box",
-    appearance: "none"
   },
   btn: {
     width: "100%",

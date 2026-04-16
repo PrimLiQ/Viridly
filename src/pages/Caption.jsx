@@ -48,6 +48,8 @@ export default function Caption() {
     <div style={styles.container}>
       <style>
         {`
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
+
           .glow-button:hover {
             background-color: #7a8a6d !important;
             color: white !important;
@@ -66,56 +68,63 @@ export default function Caption() {
         `}
       </style>
 
-      <div style={styles.card}>
-        <h2 style={styles.title}>Caption Generator</h2>
-        <p style={styles.subtitle}>Share your story with professional clarity and natural charm.</p>
-
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>TOPIC OR THEME</label>
-          <input 
-            placeholder="e.g. Morning routine" 
-            value={topic} 
-            onChange={e => setTopic(e.target.value)} 
-            style={styles.input}
-          />
+      <div style={styles.mainWrapper}>
+        {/* Title Outside the Panel with Spacing */}
+        <div style={{ marginBottom: "20px" }}>
+           <h1 style={styles.brandedTitle}>Caption</h1>
         </div>
 
-        <div style={styles.inputGroup}>
-          <label style={styles.label}>CHOOSE YOUR VIBE</label>
-          <select 
-            value={tone} 
-            onChange={e => setTone(e.target.value)} 
-            style={styles.input}
-          >
-            <option value="Inspirational">Inspirational</option>
-            <option value="Minimalist">Minimalist</option>
-            <option value="Energetic">Energetic</option>
-          </select>
-        </div>
+        <div style={styles.card}>
+          <h3 style={styles.panelHeading}>SHARE YOUR STORY</h3>
+          <p style={styles.subtitle}>Professional clarity and natural charm.</p>
 
-        <button 
-          onClick={generateCaption} 
-          className="glow-button" 
-          style={styles.btn}
-        >
-          CULTIVATE CAPTION
-        </button>
-
-        {caption && (
-          <div style={styles.outputContainer}>
-            <div style={styles.outputHeader}>
-              <h3 style={styles.outputTitle}>Refined Caption</h3>
-              <button 
-                onClick={copyToClipboard}
-                className="copy-btn"
-                style={styles.copyBtn}
-              >
-                {copied ? "COPIED" : "COPY"}
-              </button>
-            </div>
-            <p style={styles.output}>{caption}</p>
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>TOPIC OR THEME</label>
+            <input 
+              placeholder="e.g. Morning routine" 
+              value={topic} 
+              onChange={e => setTopic(e.target.value)} 
+              style={styles.input}
+            />
           </div>
-        )}
+
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>CHOOSE YOUR VIBE</label>
+            <select 
+              value={tone} 
+              onChange={e => setTone(e.target.value)} 
+              style={styles.input}
+            >
+              <option value="Inspirational">Inspirational</option>
+              <option value="Minimalist">Minimalist</option>
+              <option value="Energetic">Energetic</option>
+            </select>
+          </div>
+
+          <button 
+            onClick={generateCaption} 
+            className="glow-button" 
+            style={styles.btn}
+          >
+            CULTIVATE CAPTION
+          </button>
+
+          {caption && (
+            <div style={styles.outputContainer}>
+              <div style={styles.outputHeader}>
+                <h3 style={styles.outputTitle}>REFINED CAPTION</h3>
+                <button 
+                  onClick={copyToClipboard}
+                  className="copy-btn"
+                  style={styles.copyBtn}
+                >
+                  {copied ? "COPIED" : "COPY"}
+                </button>
+              </div>
+              <p style={styles.output}>{caption}</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -130,27 +139,41 @@ const styles = {
     justifyContent: "center",
     fontFamily: "'Inter', sans-serif",
   },
+  mainWrapper: {
+    maxWidth: "500px",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column"
+  },
+  brandedTitle: { 
+    fontSize: "32px", 
+    color: "#7a8a6d", 
+    fontFamily: "'Playfair Display', serif", 
+    fontStyle: "italic", 
+    margin: "0",
+    textAlign: "left"
+  },
   card: {
     background: "#ffffff",
     padding: "40px",
     borderRadius: "16px",
     border: "1px solid #f1ede9",
     boxShadow: "0 10px 30px rgba(92, 102, 86, 0.05)",
-    maxWidth: "500px",
     width: "100%",
     height: "fit-content",
-    textAlign: "center"
   },
-  title: {
-    fontSize: "24px",
-    color: "#434b3e",
-    margin: "0 0 10px 0",
-    fontWeight: "700"
+  panelHeading: { 
+    fontSize: "12px", 
+    letterSpacing: "2px", 
+    color: "#aeb6a3", 
+    marginBottom: "5px",
+    fontWeight: "700",
+    textTransform: "uppercase"
   },
   subtitle: {
     fontSize: "14px",
     color: "#8c9488",
-    marginBottom: "35px"
+    marginBottom: "35px",
   },
   inputGroup: {
     marginBottom: "20px",
@@ -174,7 +197,6 @@ const styles = {
     fontSize: "14px",
     outline: "none",
     boxSizing: "border-box",
-    appearance: "none"
   },
   btn: {
     width: "100%",
